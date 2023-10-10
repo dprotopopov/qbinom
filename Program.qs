@@ -23,7 +23,7 @@ namespace qbinom {
         }
     }
 
-    /// Реализация операции биноминального распределения, то есть n -> SUM C(k,n)|k>
+    /// Реализация операции биноминального распределения, то есть n -> SUM SQRT(C(k,n))|k>
     operation Binom(n: Int, register: Qubit[]) : Unit {
         use qubits = Qubit[n] {
             ApplyToEach(H, qubits);
@@ -49,7 +49,7 @@ namespace qbinom {
 
             // Повторям эксперимент несколько раз, с подсчётом колличества полученных исходов
             for _ in 1..tests {
-                // Установим в register состояние SUM C(k,n)|k>
+                // Установим в register состояние SUM SQRT(C(k,n))|k>
                 Binom(n, register); 
 
                 // Для получения конкретного значения необходимо измерить значения кубиртов в регистре
