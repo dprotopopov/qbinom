@@ -7,6 +7,7 @@ namespace qbinom {
     open Microsoft.Quantum.Measurement;
     open Microsoft.Quantum.Convert;
     
+    /// # Описание
     /// Реализация операции инкремента, то есть трансформации |k> -> |k+1>
     operation Inc(register: Qubit[]) : Unit is Ctl {
         let n = Length(register);
@@ -15,6 +16,7 @@ namespace qbinom {
         }
     }
 
+    /// # Описание
     /// Реализация операции суммирования, то есть трансформации |abcde...> -> |a+b+c+d+e+...>
     /// Это не самая эффективная реализация, но самая простая для кодирования
     operation Sum(qubits: Qubit[], register: Qubit[]) : Unit {
@@ -23,6 +25,7 @@ namespace qbinom {
         }
     }
 
+    /// # Описание
     /// Реализация операции биноминального распределения, то есть n -> SUM SQRT(C(k,n))|k>
     operation Binom(n: Int, register: Qubit[]) : Unit {
         use qubits = Qubit[n] {
@@ -41,7 +44,7 @@ namespace qbinom {
         let tests = 1000;
 
 
-        let k = BitSizeI(n);
+        let k = BitSizeI(n+1);
         use register = Qubit[k] {
 
             // Аллокируем массив для подсчёта количества исходов экспериментов
